@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class='container'>
+    <h5 class='my-3 border-bottom pb-2'>질문등록</h5>
+    <form method='post' class='post-form my-3'>
+        {% csrf_token %}
+        <!-- {{form.as_p}} -->
+        <!-- form.as_p : question_create 함수로 부터 전달한 QuestionForm 객체, 모델 폼과 연결된 입력 항목값을 입력할 수 있는 HTML 코드를 자동으로 만들어 줌 -->
+        <!-- 자동으로 만들 경우 디자인적 제약사항, 디자인과 서버의 경계가 모호해질 수 있기 때문에 다음과 같은 방법으로 작성할 수 도 있음 -->
+        {% if form.errors %}
+        <div>
+            {% for field in form %}
+            {% if field.errors %}
+            <strong>{{field.label}}</strong>
+            {{field.errors}}
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="subject">제목</label>
+            <input type="text" class="form-control" name="subject" id="subject"
+                value="{{form.subject.value|default_if_none:''}}">
+        </div>
+
+        <div class="form-group">
+            <label for="content">내용</label>
+            <textarea name="content" id="content" rows="10"
+                class="form-control">{{form.content.value|default_if_none:''}}</textarea>
+        </div>
+
+        <button type='submit' class='btn btn-primary'>저장하기</button>
+    </form>
+</div>
+{% endblock content %}
