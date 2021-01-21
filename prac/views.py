@@ -1,20 +1,20 @@
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from .models import Question
-from django.utils import timezone
+from .models import Question, Answer
 from .forms import QuestionForm, AnswerForm
+from django.utils import timezone
 
 # Create your views here.
 def index(request):
     question_list = Question.objects.order_by("-create_date")
     context = {"question_list": question_list}
-    return render(request, "practice/question_list.html", context)
+    return render(request, "prac/question_list.html", context)
 
 
 def details(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     context = {"question": question}
-    return render(request, "practice/question_details.html", context=context)
+    return render(request, "prac/question_details.html", context)
 
 
 def answer_create(request, question_id):
@@ -26,15 +26,11 @@ def answer_create(request, question_id):
             answer.create_date = timezone.now()
             answer.question = question
             answer.save()
-            return redirect("practice:details", question_id=question.id)
+            return redirect("prac:details", question_id=question.id)
     else:
         form = AnswerForm()
-    context = {
-        "question": question,
-        "form": form,
-    }
-
-    return render(request, "practice/question_details.html", context)
+    context = {"form": form, "question": question}
+    return render(request, "prac/question_details.html", context)
 
 
 def question_create(request):
@@ -44,8 +40,8 @@ def question_create(request):
             question = form.save(commit=False)
             question.create_date = timezone.now()
             question.save()
-            return redirect("practice:index")
+            return redirect("prac:index")
     else:
         form = QuestionForm()
     context = {"form": form}
-    return render(request, "practice/question_form.html", context)
+    return render(request, "prac/question_form.html", context)

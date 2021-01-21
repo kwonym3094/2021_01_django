@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # added apps
     "pybo.apps.PyboConfig",
-    "practice.apps.PracticeConfig",
+    "prac.apps.PracConfig",
     # original apps
     "django.contrib.admin",
     "django.contrib.auth",

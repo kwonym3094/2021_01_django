@@ -1,0 +1,17 @@
+<form action="{% url 'prac:question_create' %}" method="POST">
+    {% csrf_token %}
+
+    {% if form.errors %}
+    <div>
+        {% for field in form %}
+        {% if field.errors %}
+        <h2>{{field.label}}</h2>
+        <li>{{field.errors}}</li>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {{form.as_p}}
+    <button type='submit'>저장하기</button>
+</form>

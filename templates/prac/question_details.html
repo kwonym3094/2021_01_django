@@ -1,0 +1,24 @@
+<h1>{{question.subject}}</h1>
+
+<p>{{question.content}}</p>
+
+<h3>{{question.answer_set.count}}개의 답변이 있습니다.</h3>
+{% for answer in question.answer_set.all %}
+<div>
+    <li>{{answer.content}}</li>
+</div>
+{% endfor %}
+
+<form action="{% url 'prac:answer_create' question.id %}" method="POST">
+    {% csrf_token %}
+    {% if form.errors %}
+    {% for field in form %}
+    {% if field.errors %}
+    <strong>{{field.label}}</strong>
+    <li>{{field.errors}}</li>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    <textarea id='content' name='content' cols="15"></textarea>
+    <button type="submit">답변등록</button>
+</form>
