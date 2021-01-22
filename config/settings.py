@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     # added apps
     "pybo.apps.PyboConfig",
     "prac.apps.PracConfig",
+    "common.apps.CommonConfig",
     # original apps
     "django.contrib.admin",
     "django.contrib.auth",
@@ -117,6 +118,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+# 로그인 성공후 이동하는 URL
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
