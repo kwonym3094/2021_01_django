@@ -35,3 +35,7 @@
         * pip freeze > requirements.txt << 현재 설치된 패키지 목록을 requirements.txt라는 파일에 저장
         * requirements.txt라는 파일만 나중에 다른 프로젝트로 이동시켜 pip install -r requirements.txt 해주면 됨
         * 혹시 충돌날 경우를 대비해 해당하는 패키지만 다 지우는 경우? >> pip uninstall -r requirements.txt -y
+
+
+    - aws 서버를 이용해 서비스 제공하고 싶을때?
+     * 해당 [링크](https://wikidocs.net/72283) 참고 
