@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     "pybo.apps.PyboConfig",
     "prac.apps.PracConfig",
     "common.apps.CommonConfig",
+    "api_user.apps.ApiUserConfig",
+    "rest_framework",  # REST API를 사용하기 위해 추가
     # original apps
     "django.contrib.admin",
     "django.contrib.auth",
